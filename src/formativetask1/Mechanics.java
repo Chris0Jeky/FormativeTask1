@@ -1,5 +1,7 @@
 package formativetask1;
 
+import java.util.Vector;
+
 public class Mechanics {
 
     // creates a two dimensional array with 2 columns and 26 rows
@@ -15,7 +17,7 @@ public class Mechanics {
         return charsArr;
     }
 
-    public static int getCharValue(char ch, int[][] bidimArr) {
+    public static int getCharValue(char ch, int[][] bidimensionalArr) {
 
         // the following if will make the character passed as parameter
         // lower case
@@ -25,10 +27,29 @@ public class Mechanics {
         // returns the value of the character passed as parameter
         // based on its position in the alphabet
         for (int i = 0; i < 26; i++) {
-            if (ch == bidimArr[0][i]) {
-                return bidimArr[1][i];
+            if (ch == bidimensionalArr[0][i]) {
+                return bidimensionalArr[1][i];
             }
         }
         return 0;
+    }
+    
+    public static boolean validInput(String word) {
+        //if (){
+            
+        //}
+        return false;
+    }
+    
+    public static boolean isPresentInVector(Vector vekky, String word) {
+        return vekky.contains(word.toLowerCase());
+    }
+    
+    public static int evaluateWord(String word, int[][] bidimensionalArr){
+        int totalValue = 0;
+        totalValue = getCharValue(word.charAt(0), bidimensionalArr) + totalValue;
+        totalValue = getCharValue(word.charAt(1), bidimensionalArr) + totalValue;
+        totalValue = getCharValue(word.charAt(2), bidimensionalArr) + totalValue;
+        return totalValue;
     }
 }
