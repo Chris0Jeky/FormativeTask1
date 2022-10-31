@@ -8,7 +8,7 @@ import java.util.Vector;
 public class ReadFile {
 
     public static Vector read() {
-        
+
         Vector vectorisedFile = new Vector();
         try {
             File file = new File("datafile.txt");
@@ -16,9 +16,9 @@ public class ReadFile {
                 while (reader.hasNext()) {
                     String data = reader.next();
                     vectorisedFile.addElement(data);
-                    
+
                 }
-                
+
             }
         } catch (FileNotFoundException ex) {
             System.out.println(ex.getMessage());

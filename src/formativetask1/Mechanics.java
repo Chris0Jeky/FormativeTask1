@@ -33,19 +33,29 @@ public class Mechanics {
         }
         return 0;
     }
-    
+
+    // return false if the parameter passed contains a character that is not 
+    // contained in the alphabet
+    // otherwise it returns true
     public static boolean validInput(String word) {
-        //if (){
-            
-        //}
-        return false;
+        for (int i = 0; i < 3; i++) {
+            if (word.toLowerCase().charAt(i) < 97
+                    && word.toLowerCase().charAt(i) > 122) {
+                System.out.println("Inputed word is not valid. \n It must "
+                        + "contain only letters. \n");
+                return false;
+            }
+        }
+        return true;
     }
-    
+
+    // it returnes true or false if the word parameter is contained in the 
+    // vector parameter
     public static boolean isPresentInVector(Vector vekky, String word) {
         return vekky.contains(word.toLowerCase());
     }
-    
-    public static int evaluateWord(String word, int[][] bidimensionalArr){
+
+    public static int evaluateWord(String word, int[][] bidimensionalArr) {
         int totalValue = 0;
         totalValue = getCharValue(word.charAt(0), bidimensionalArr) + totalValue;
         totalValue = getCharValue(word.charAt(1), bidimensionalArr) + totalValue;
