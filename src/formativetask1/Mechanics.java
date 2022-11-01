@@ -19,12 +19,12 @@ public class Mechanics {
 
     public static int getCharValue(char ch, int[][] bidimensionalArr) {
 
-        // the following if will make the character passed as parameter
+        // the following if will make the character passed as argument
         // lower case
         if (ch > 64 && ch < 91) {
             ch = (char) (ch + 32);
         }
-        // returns the value of the character passed as parameter
+        // returns the value of the character passed as argument
         // based on its position in the alphabet
         for (int i = 0; i < 26; i++) {
             if (ch == bidimensionalArr[0][i]) {
@@ -50,11 +50,18 @@ public class Mechanics {
     }
 
     // it returnes true or false if the word parameter is contained in the 
-    // vector parameter
+    // vector
     public static boolean isPresentInVector(Vector vekky, String word) {
         return vekky.contains(word.toLowerCase());
     }
 
+    // checks whether the third letter of the passed strings are the same
+    // and returns true or false
+    public static boolean startWithEnd(String previousWord, String newWord) {
+        return previousWord.charAt(2) == newWord.charAt(2);
+    }
+
+    // returns total value of the word, based on its characters
     public static int evaluateWord(String word, int[][] bidimensionalArr) {
         int totalValue = 0;
         totalValue = getCharValue(word.charAt(0), bidimensionalArr) + totalValue;
@@ -62,4 +69,5 @@ public class Mechanics {
         totalValue = getCharValue(word.charAt(2), bidimensionalArr) + totalValue;
         return totalValue;
     }
+
 }
