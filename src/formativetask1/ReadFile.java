@@ -16,7 +16,6 @@ public class ReadFile {
                 while (reader.hasNext()) {
                     String data = reader.next();
                     vectorisedFile.addElement(data);
-
                 }
 
             }
