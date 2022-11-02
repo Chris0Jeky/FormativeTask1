@@ -37,20 +37,30 @@ public class Mechanics {
     // return false if the parameter passed contains a character that is not 
     // contained in the alphabet
     // otherwise it returns true
+    // uses a XOR logic gate that connects two OR, and it's all inverted by a NOT
     public static boolean validInput(String word) {
         for (int i = 0; i < 3; i++) {
-            if (word.toLowerCase().charAt(i) < 97
-                    && word.toLowerCase().charAt(i) > 122) {
-                System.out.println("Inputed word is not valid. \n It must "
-                        + "contain only letters. \n");
+            if (!((word.charAt(i) < 64
+                    || word.charAt(i) > 90)
+                    ^ (word.charAt(i) < 97
+                    || word.charAt(i) > 122))) {
                 return false;
             }
         }
         return true;
     }
 
+    public static boolean isThreeLetters(String word) {
+        boolean end = true;
+        if (word.length() != 3) {
+            end = false;
+        }
+        return end;
+    }
+
     // it returnes true or false if the word parameter is contained in the 
     // vector
+    // it also converts arguments to lower case to match the datafile style
     public static boolean isPresentInVector(Vector vekky, String word) {
         return vekky.contains(word.toLowerCase());
     }
