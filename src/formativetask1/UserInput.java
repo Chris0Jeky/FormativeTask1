@@ -10,7 +10,7 @@ public class UserInput {
         String word = inputFromUser.nextLine();
         return word;
     }
-    
+
     public static boolean checks(String newWord, Vector datafile,
             boolean isFirstTurn, String previousWord) {
         boolean end = true;
@@ -39,13 +39,16 @@ public class UserInput {
                 end = false;
             }
         }
-        else if (isFirstTurn){
-            
-        
-        }
         return end;
 
     }
-    
-    
+
+    public static void playerWinsMessage(int player) {
+        if (player == 1) {
+            System.out.println("Player 2 wins.");
+        } else if (player == 2) {
+            System.out.println("player 1 wins.");
+        }
+    }
+
 }

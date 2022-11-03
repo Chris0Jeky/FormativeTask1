@@ -5,19 +5,41 @@ import java.util.Vector;
 public class FormativeTask1 {
 
     public static void main(String[] args) {
+        startGame();              
+
+    }
+    
+    public static void startGame(){
         int score = 0;
         boolean isFirstTurn = true;
         boolean end = false;
         int player = 1;
+        String word;
+        String previousWord = "";
         Vector datafileVectorised = ReadFile.read();
         int[][] dataMap = Mechanics.arrayCreation();
-
-        String word = UserInput.getUserInput();
-
-        if (UserInput.checks(word, datafileVectorised, isFirstTurn, "")) {
-            System.out.println(Mechanics.evaluateWord(word, dataMap));
+        
+        while(end != true){
+            
+            do{
+             word = UserInput.getUserInput();
+            }
+            while(UserInput.checks(word, datafileVectorised, isFirstTurn, previousWord)
+                    || isAsterisc(word));
+            isAsterisc(word);
+            if(end == true) {
+                System.out.println("Player No." + changePlayer(player) + " wins!");
+                break;
+            }
+            else {
+                System.out.println("Player No." + player + " entered " + word);
+                Mechanics.keepScore(score, word, dataMap);
+                isFirstTurn = false;
+                previousWord = word;
+                changePlayer(player);
+            }
+            
         }
-
     }
 
     public static boolean isAsterisc(String word) {
@@ -28,12 +50,13 @@ public class FormativeTask1 {
         return false;
     }
 
-    public static void playerWinsMessage(int player) {
-        if (player == 1) {
-            System.out.println("Player 2 wins.");
-        } else if (player == 2) {
-            System.out.println("player 1 wins.");
-        }
-    }
 
+    public static int changePlayer(int player) {
+        if (player == 1) {
+            player = 2;
+        } else if (player == 2) {
+            player = 1;
+        }
+        return player;
+    }
 }
