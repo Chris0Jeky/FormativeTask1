@@ -1,5 +1,6 @@
 package formativetask1;
 
+import static formativetask1.FormativeTask1.isAsterisc;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -49,6 +50,26 @@ public class UserInput {
         } else if (player == 2) {
             System.out.println("player 1 wins.");
         }
+    }
+    
+    public static void introductionaryMessage(int player, boolean isFirstTurn, String previousWord){
+        if (isFirstTurn) {
+                System.out.println("Player No." + player + " please insert a valid word.");
+
+            } else {
+                System.out.println("Player No." + player + " please insert a valid word. \n"
+                        + "Such word should have the letter " + previousWord.charAt(2)
+                        + " as first letter. \n");
+            }
+    }
+    
+    public static String inputPrompt(String word, Vector datafileVectorised, boolean isFirstTurn, String previousWord){
+        while (isAsterisc(word) && UserInput.checks(word, datafileVectorised,
+                    isFirstTurn, previousWord)) {
+                    word = UserInput.getUserInput();
+                    return word;
+                }
+        return word;
     }
 
 }

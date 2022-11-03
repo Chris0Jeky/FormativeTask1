@@ -5,11 +5,11 @@ import java.util.Vector;
 public class FormativeTask1 {
 
     public static void main(String[] args) {
-        startGame();              
+        startGame();
 
     }
-    
-    public static void startGame(){
+
+    public static int startGame() {
         int score = 0;
         boolean isFirstTurn = true;
         boolean end = false;
@@ -18,38 +18,44 @@ public class FormativeTask1 {
         String previousWord = "";
         Vector datafileVectorised = ReadFile.read();
         int[][] dataMap = Mechanics.arrayCreation();
-        
-        while(end != true){
-            
-            do{
-             word = UserInput.getUserInput();
+
+        System.out.println("Player No." + player + " starts.");
+
+        while (end != true) {
+
+            UserInput.introductionaryMessage(player, isFirstTurn, previousWord);
+
+            word = UserInput.getUserInput();
+            if (!isAsterisc(word)) {
+                word = UserInput.inputPrompt(word, datafileVectorised, isFirstTurn, previousWord);
+            } else if (isAsterisc(word)) {
+                end = true;
             }
-            while(UserInput.checks(word, datafileVectorised, isFirstTurn, previousWord)
-                    || isAsterisc(word));
-            isAsterisc(word);
-            if(end == true) {
+
+            if (end == true) {
                 System.out.println("Player No." + changePlayer(player) + " wins!");
-                break;
-            }
-            else {
+            } else {
                 System.out.println("Player No." + player + " entered " + word);
                 Mechanics.keepScore(score, word, dataMap);
+                System.out.println("\nScore: " + score + "\n");
                 isFirstTurn = false;
                 previousWord = word;
-                changePlayer(player);
+                player = changePlayer(player);
             }
-            
+
         }
+        return 0;
     }
 
     public static boolean isAsterisc(String word) {
-        if ("*".equals(word)) {
-            boolean end = true;
-            return end;
-        }
-        return false;
-    }
 
+        boolean result = false;
+        if ("*".equals(word)) {
+            result = true;
+            return result;
+        }
+        return result;
+    }
 
     public static int changePlayer(int player) {
         if (player == 1) {
