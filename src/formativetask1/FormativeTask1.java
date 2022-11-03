@@ -9,7 +9,7 @@ public class FormativeTask1 {
 
     }
 
-    public static int startGame() {
+    public static void startGame() {
         int score = 0;
         boolean isFirstTurn = true;
         boolean end = false;
@@ -28,23 +28,28 @@ public class FormativeTask1 {
             word = UserInput.getUserInput();
             if (!isAsterisc(word)) {
                 word = UserInput.inputPrompt(word, datafileVectorised, isFirstTurn, previousWord);
-            } else if (isAsterisc(word)) {
+            }
+            if (isAsterisc(word)) {
                 end = true;
             }
 
             if (end == true) {
-                System.out.println("Player No." + changePlayer(player) + " wins!");
+                System.out.println("\nPlayer No." + changePlayer(player) + " wins!");
             } else {
-                System.out.println("Player No." + player + " entered " + word);
-                Mechanics.keepScore(score, word, dataMap);
+                System.out.println("\nPlayer No." + player + " entered " + word);
+                score = Mechanics.keepScore(score, word, dataMap);
                 System.out.println("\nScore: " + score + "\n");
                 isFirstTurn = false;
                 previousWord = word;
                 player = changePlayer(player);
             }
 
+            if (score > 200) {
+                System.out.println("\nMax score of 200 exceeded! \n"
+                        + "Player No." + player + " wins!");
+                end = true;
+            }
         }
-        return 0;
     }
 
     public static boolean isAsterisc(String word) {

@@ -19,7 +19,7 @@ public class UserInput {
         if (!Mechanics.isThreeLetters(newWord)) {
             System.out.println("Invalid input. \n"
                     + "You must enter a word of an acceptable length. \n"
-                    + "The only acceptable length is 3 letters.");
+                    + "The only acceptable length is 3 letters. \n");
             end = false;
         } else if (!Mechanics.validInput(newWord)) {
             System.out.println("The input is invalid. \n"
@@ -27,7 +27,7 @@ public class UserInput {
             end = false;
         } else if (!Mechanics.isPresentInVector(datafile, newWord)) {
             System.out.println("No such word in the datafile. \n"
-                    + "Please try another word.");
+                    + "Please try another word. \n");
             end = false;
         } else if (!isFirstTurn) {
             if (!Mechanics.startWithEnd(previousWord, newWord)) {
@@ -64,10 +64,9 @@ public class UserInput {
     }
     
     public static String inputPrompt(String word, Vector datafileVectorised, boolean isFirstTurn, String previousWord){
-        while (isAsterisc(word) && UserInput.checks(word, datafileVectorised,
+        while (!isAsterisc(word) && !UserInput.checks(word, datafileVectorised,
                     isFirstTurn, previousWord)) {
                     word = UserInput.getUserInput();
-                    return word;
                 }
         return word;
     }
