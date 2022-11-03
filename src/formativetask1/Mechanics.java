@@ -68,7 +68,7 @@ public class Mechanics {
     // checks whether the third letter of the passed strings are the same
     // and returns true or false
     public static boolean startWithEnd(String previousWord, String newWord) {
-        return previousWord.charAt(2) == newWord.charAt(2);
+        return previousWord.charAt(2) == newWord.charAt(0);
     }
 
     // returns total value of the word, based on its characters

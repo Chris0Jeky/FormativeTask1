@@ -13,30 +13,35 @@ public class UserInput {
     }
 
     public static boolean checks(String newWord, Vector datafile,
-            boolean isFirstTurn, String previousWord) {
+            boolean isFirstTurn, String previousWord, int[][] dataMap) {
         boolean end = true;
 
         if (!Mechanics.isThreeLetters(newWord)) {
-            System.out.println("Invalid input. \n"
+            System.out.println("\nInvalid input. \n"
                     + "You must enter a word of an acceptable length. \n"
                     + "The only acceptable length is 3 letters. \n");
             end = false;
         } else if (!Mechanics.validInput(newWord)) {
-            System.out.println("The input is invalid. \n"
+            System.out.println("\nThe input is invalid. \n"
                     + "Please enter words that only contain letters. \n");
             end = false;
         } else if (!Mechanics.isPresentInVector(datafile, newWord)) {
-            System.out.println("No such word in the datafile. \n"
+            System.out.println("\nNo such word in the datafile. \n"
                     + "Please try another word. \n");
             end = false;
         } else if (!isFirstTurn) {
             if (!Mechanics.startWithEnd(previousWord, newWord)) {
-                System.out.println("The word entered does not start with"
+                System.out.println("\nThe word entered does not start with"
                         + " the same latter as the last letter of the previous"
                         + " word. \n"
                         + "Please enter a word that starts with the same letter"
                         + " as the previously entered word (by the other player)"
                         + "\n");
+                end = false;
+            }
+        } else if (isFirstTurn) {
+            if (Mechanics.evaluateWord(newWord, dataMap) > 20) {
+                System.out.println("\nThe entered word's value mustn't exceed 20 points. \n");
                 end = false;
             }
         }
@@ -51,24 +56,32 @@ public class UserInput {
             System.out.println("player 1 wins.");
         }
     }
-    
-    public static void introductionaryMessage(int player, boolean isFirstTurn, String previousWord){
-        if (isFirstTurn) {
-                System.out.println("Player No." + player + " please insert a valid word.");
 
-            } else {
-                System.out.println("Player No." + player + " please insert a valid word. \n"
-                        + "Such word should have the letter " + previousWord.charAt(2)
-                        + " as first letter. \n");
-            }
+    public static void introductionaryMessage(int player, boolean isFirstTurn, String previousWord) {
+        if (isFirstTurn) {
+            System.out.println("Player No." + player + " please insert a valid 3-letters word. \n"
+                    + "Or enter * to give up. \n");
+
+        } else {
+            System.out.println("Player No." + player + " please insert a valid 3-letters word. \n"
+                    + "Such word should have the letter '" + previousWord.charAt(2)
+                    + "' as first letter. \n"
+                    + "Or enter * to give up. \n");
+        }
     }
-    
-    public static String inputPrompt(String word, Vector datafileVectorised, boolean isFirstTurn, String previousWord){
+
+    public static String inputPrompt(String word, Vector datafileVectorised, boolean isFirstTurn, String previousWord, int[][] dataMap) {
         while (!isAsterisc(word) && !UserInput.checks(word, datafileVectorised,
-                    isFirstTurn, previousWord)) {
-                    word = UserInput.getUserInput();
-                }
+                isFirstTurn, previousWord, dataMap)) {
+            word = UserInput.getUserInput();
+        }
         return word;
+    }
+
+    public static void twentyPointsMessage(boolean isFirstTurn) {
+        if (isFirstTurn) {
+            System.out.println("\nThe entered word's value mustn't exceed 20 points. \n");
+        }
     }
 
 }
