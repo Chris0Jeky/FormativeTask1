@@ -79,8 +79,10 @@ public class Mechanics {
         totalValue = getCharValue(word.charAt(2), bidimensionalArr) + totalValue;
         return totalValue;
     }
-    
-    public static int keepScore(int currentScore, String word, int[][] bidimensionalArr){
+
+    // will return an updated score, based on the previous score and the value
+    // of the newly entered word
+    public static int keepScore(int currentScore, String word, int[][] bidimensionalArr) {
         return evaluateWord(word, bidimensionalArr) + currentScore;
     }
 

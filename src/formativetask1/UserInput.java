@@ -5,13 +5,19 @@ import java.util.Scanner;
 import java.util.Vector;
 
 public class UserInput {
-
+    
+    // promptes a get string function and returns the string
     public static String getUserInput() {
         Scanner inputFromUser = new Scanner(System.in);
         String word = inputFromUser.nextLine();
         return word;
     }
-
+    
+    // checks are made based on a number of factors
+    // it will check following this sequence:
+    // length of string -> only letters -> is present in datafile.txt ->
+    // -> (if it's not the first turn) first letter of the word ->
+    // -> (if it's the first turn) 20 points word rule.
     public static boolean checks(String newWord, Vector datafile,
             boolean isFirstTurn, String previousWord, int[][] dataMap) {
         boolean end = true;
@@ -56,7 +62,7 @@ public class UserInput {
             System.out.println("player 1 wins.");
         }
     }
-
+    // messages of introduction after every round and at the beggining of the game
     public static void introductionaryMessage(int player, boolean isFirstTurn, String previousWord) {
         if (isFirstTurn) {
             System.out.println("Player No." + player + " please insert a valid 3-letters word. \n"
@@ -69,8 +75,10 @@ public class UserInput {
                     + "Or enter * to give up. \n");
         }
     }
-
-    public static String inputPrompt(String word, Vector datafileVectorised, boolean isFirstTurn, String previousWord, int[][] dataMap) {
+    // iterated input prompt
+    public static String inputPrompt(String word, Vector datafileVectorised, 
+            boolean isFirstTurn, String previousWord, int[][] dataMap) {
+        // it will stop only when all the conditions from "checks" are met
         while (!isAsterisc(word) && !UserInput.checks(word, datafileVectorised,
                 isFirstTurn, previousWord, dataMap)) {
             word = UserInput.getUserInput();

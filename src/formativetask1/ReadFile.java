@@ -17,7 +17,6 @@ public class ReadFile {
                     String data = reader.next();
                     vectorisedFile.addElement(data);
                 }
-
             }
         } catch (FileNotFoundException ex) {
             System.out.println(ex.getMessage());
