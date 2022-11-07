@@ -11,7 +11,8 @@ public class ReadFile {
 
         Vector vectorisedFile = new Vector();
         try {
-            File file = new File("datafile.txt");
+            String dataFile = System.getProperty("user.dir") + File.separator + "datafile.txt";
+            File file = new File(dataFile);
             try (Scanner reader = new Scanner(file)) {
                 while (reader.hasNext()) {
                     String data = reader.next();

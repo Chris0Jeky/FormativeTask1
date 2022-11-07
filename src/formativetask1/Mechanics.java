@@ -4,7 +4,7 @@ import java.util.Vector;
 
 public class Mechanics {
 
-    // creates a two dimensional array with 2 columns and 26 rows
+    // creates a two-dimensional array with 2 columns and 26 rows
     // then populates the array with integers representing in order the
     // alphabetic letters and their value based on their position in the 
     // alphabet

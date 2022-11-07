@@ -5,7 +5,7 @@ import java.util.Vector;
 public class FormativeTask1 {
 
     public static void main(String[] args) {
-        startGame();
+         startGame();
     }
     
 // initialisation of core variables
@@ -26,7 +26,7 @@ public class FormativeTask1 {
         System.out.println("Player No." + player + " starts.");
         
         // while loop will iterate until something sets end as true
-        while (end != true) {
+        while (!end) {
             System.out.println("______________________________________________");
 
             // a set of introductionary messages
@@ -47,7 +47,7 @@ public class FormativeTask1 {
 
             // after the user input, it checks whether the game as ended
             // it would end by entering an asterisc
-            if (end == true) {
+            if (end) {
                 System.out.println("\nPlayer No." + changePlayer(player) + " wins!");
             } else {
                 System.out.println("\nPlayer No." + player + " entered " + word);
