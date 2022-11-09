@@ -6,6 +6,8 @@ public class FormativeTask1 {
 
     public static void main(String[] args) {
          startGame();
+         // Vector datafileVectorised = ReadFile.read();
+         // System.out.println(datafileVectorised);
     }
     
 // initialisation of core variables
